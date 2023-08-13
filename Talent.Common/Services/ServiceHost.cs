@@ -8,6 +8,7 @@ using RawRabbit;
 using Talent.Common.Commands;
 using Talent.Common.Events;
 using Talent.Common.RabbitMq;
+using System.IO;
 
 namespace Talent.Common.Services
 {
@@ -22,14 +23,20 @@ namespace Talent.Common.Services
 
         public void Run() => _webHost.Run();
 
-        public static HostBuilder Create<TStartup>(string[] args) where TStartup : class
+        public static HostBuilder Create<TStartup>(string customSetting, string[] args) where TStartup : class
         {
             Console.Title = typeof(TStartup).Namespace;
-            var config = new ConfigurationBuilder()
-                .AddEnvironmentVariables()
-                .AddCommandLine(args)
-                .Build();
-
+            
+            var builder = new ConfigurationBuilder();
+            if (customSetting != "default")
+            {
+                builder.SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile(customSetting, optional: false, reloadOnChange: true);
+            }
+            var config = builder.AddEnvironmentVariables()
+                    .AddCommandLine(args)
+                    .Build();
+            
             var hostUrl = config["hosturl"];
             if (string.IsNullOrEmpty(hostUrl))
                 hostUrl = "http://0.0.0.0:60880";

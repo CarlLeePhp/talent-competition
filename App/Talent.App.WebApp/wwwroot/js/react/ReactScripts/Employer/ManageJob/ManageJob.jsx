@@ -56,12 +56,13 @@ export default class ManageJob extends React.Component {
     };
 
     loadData(callback) {
-        var link = 'http://localhost:51689/listing/listing/getSortedEmployerJobs';
+        // var link = 'http://localhost:51689/listing/listing/getSortedEmployerJobs';
+        var link = 'https://talentservicestalent20230813183857.azurewebsites.net/listing/listing/getSortedEmployerJobs';
         var cookies = Cookies.get('talentAuthToken');
         // your ajax call and other logic goes here
         $.ajax({
-            url: 'http://localhost:51689/listing/listing/getSortedEmployerJobs?'
-                + 'activePage=' + this.state.activePage
+            url: link
+                + '?activePage=' + this.state.activePage
                 + '&sortByDate=' + this.state.sortBy.date
                 + '&showActive=' + this.state.filter.showActive
                 + '&showClosed=' + this.state.filter.showClosed
@@ -117,7 +118,7 @@ export default class ManageJob extends React.Component {
 
                         )}
                     </Card.Group>
-
+                    
                 </div>
 
             </BodyWrapper>

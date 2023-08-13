@@ -15,7 +15,7 @@ namespace Talent.Services.Listing
     {
         public static void Main(string[] args)
         {
-            ServiceHost.Create<Startup>(args)
+            ServiceHost.Create<Startup>("talentsettings.json", args)
                 .UseRabbitMq()
                 .Build()
                 .Run();

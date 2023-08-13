@@ -84,6 +84,12 @@ namespace Talent.Services.Profile.Controllers
             _awsService = awsService;
         }
 
+        [HttpGet("getTestString")]
+        public string GetTestString()
+        {
+            return "From Profile API";
+        }
+
         #region Talent
 
         [HttpGet("getProfile")]
