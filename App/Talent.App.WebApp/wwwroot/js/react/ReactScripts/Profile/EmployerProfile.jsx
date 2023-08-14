@@ -53,7 +53,7 @@ export default class EmployeeProfile extends React.Component {
         var cookies = Cookies.get('talentAuthToken');
         $.ajax({
             // url: 'http://localhost:60290/profile/profile/getEmployerProfile',
-            url: 'https://talentservicesprofile20230813182721.azurewebsites.net/profile/profile/getEmployerProfile',
+            url: 'https://talentservicesprofile20230813225226.azurewebsites.net/profile/profile/getEmployerProfile',
             headers: {
                 'Authorization': 'Bearer ' + cookies,
                 'Content-Type': 'application/json'
